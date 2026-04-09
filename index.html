@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AusPayNet — Email Template Editor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span>Email Template Editor</span>
+      </div>
+      <div class="header-actions">
+        <span id="save-status"></span>
+        <button id="export-btn" onclick="exportJson()">Export JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <aside>
+      <div class="aside-header">
+        <span id="template-count">0 templates</span>
+        <button id="new-btn" onclick="newTemplate()">+ New</button>
+      </div>
+      <div id="template-list"></div>
+    </aside>
+
+    <section id="editor-area">
+      <div id="empty-state">
+        <p>No template selected</p>
+        <button onclick="newTemplate()">+ Create your first template</button>
+      </div>
+
+      <div id="editor-form" style="display:none;">
+        <div class="form-header">
+          <h2 id="form-title">New template</h2>
+          <button id="delete-btn" onclick="deleteTemplate()">Delete</button>
+        </div>
+        <div class="field">
+          <label for="input-title">Template name</label>
+          <input type="text" id="input-title" placeholder="e.g. Meeting follow-up" />
+        </div>
+        <div class="field">
+          <label for="input-body">Email body</label>
+          <textarea id="input-body" placeholder="Type your template here. Press Enter for new lines."></textarea>
+        </div>
+        <div class="form-actions">
+          <button id="save-btn" onclick="saveTemplate()">Save template</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="export-modal" style="display:none;">
+    <div class="modal-backdrop" onclick="closeExport()"></div>
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Export templates.json</h3>
+        <button onclick="closeExport()">✕</button>
+      </div>
+      <p class="modal-instructions">Copy the JSON below and replace your <code>templates.json</code> file on GitHub.</p>
+      <pre id="json-output"></pre>
+      <div class="modal-actions">
+        <button onclick="closeExport()">Close</button>
+        <button id="copy-btn" onclick="copyJson()">Copy to clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
